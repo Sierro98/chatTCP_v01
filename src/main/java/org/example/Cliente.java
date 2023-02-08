@@ -28,7 +28,6 @@ public class Cliente implements Runnable {
             shudown();
         }
     }
-
     public void shudown() {
         done = true;
         try {
@@ -42,8 +41,8 @@ public class Cliente implements Runnable {
         }
     }
 
+    //MANEJADOR DE INPUTS
     class InputHandler implements Runnable {
-
         @Override
         public void run() {
             try {
