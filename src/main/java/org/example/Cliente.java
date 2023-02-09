@@ -8,6 +8,7 @@ public class Cliente implements Runnable {
     private BufferedReader in;
     private PrintWriter out;
     private boolean done;
+    private String nombre;
 
     @Override
     public void run() {
@@ -19,15 +20,17 @@ public class Cliente implements Runnable {
             InputHandler inHandler = new InputHandler();
             Thread t = new Thread(inHandler);
             t.start();
-
+            System.out.print("Seleccione el nombre: ");
+            nombre = in.readLine();
             String inMensaje;
             while ((inMensaje = in.readLine()) != null) {
-                System.out.println(inMensaje);
+                    System.out.println(inMensaje);
             }
         } catch (IOException e) {
             shudown();
         }
     }
+
     public void shudown() {
         done = true;
         try {
@@ -36,7 +39,7 @@ public class Cliente implements Runnable {
             if (!client.isClosed()) {
                 client.close();
             }
-        }catch (IOException e) {
+        } catch (IOException e) {
             //ignore
         }
     }
