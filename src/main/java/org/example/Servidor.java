@@ -113,30 +113,32 @@ public class Servidor implements Runnable {
                         enviarMensaje("1. grupo1\n" +
                                 "2. grupo2\n" +
                                 "3. grupo3\n" +
-                                "4.4grupo4\n" +
+                                "4.grupo4\n" +
                                 "5. grupo5");
                     } else if (mensaje.startsWith("/join")) {
                         String[] direct2 = mensaje.split(" ");
+                        boolean unidoGrupo = false;
                         for (HashMap<String, Socket> grupo : listaGrupos) {
                             if (direct2[1].equals("grupo1")) {
                                 grupo.put(nombre, client);
-                                enviarMensaje("Te uniste al grupo");
+                                unidoGrupo = true;
                             } else if (direct2[1].equals("grupo2")) {
                                 grupo.put(nombre, client);
-                                enviarMensaje("Te uniste al grupo");
+                                unidoGrupo = true;
                             } else if (direct2[1].equals("grupo3")) {
                                 grupo.put(nombre, client);
-                                enviarMensaje("Te uniste al grupo");
+                                unidoGrupo = true;
                             } else if (direct2[1].equals("grupo4")) {
                                 grupo.put(nombre, client);
-                                enviarMensaje("Te uniste al grupo");
+                                unidoGrupo = true;
                             } else if (direct2[1].equals("grupo5")) {
                                 grupo.put(nombre, client);
-                                enviarMensaje("Te uniste al grupo");
+                                unidoGrupo = true;
                             } else {
                                 enviarMensaje("Grupo invalido");
                             }
                         }
+                        if (unidoGrupo) enviarMensaje("Te uniste al grupo");
                     } else if (mensaje.startsWith("/grupo1")) {
                         String[] direct2 = mensaje.split(" ");
                         grupo1.forEach(
@@ -229,26 +231,28 @@ public class Servidor implements Runnable {
                         );
                     } else if (mensaje.startsWith("/exit")) {
                         String[] direct2 = mensaje.split(" ");
+                        boolean salidaGrupo = false;
                         for (HashMap<String, Socket> grupo : listaGrupos) {
                             if (direct2[1].equals("grupo1")) {
                                 grupo.remove(nombre);
-                                enviarMensaje("Saliste del grupo");
+                                salidaGrupo = true;
                             } else if (direct2[1].equals("grupo2")) {
                                 grupo.remove(nombre);
-                                enviarMensaje("Saliste del grupo");
+                                salidaGrupo = true;
                             } else if (direct2[1].equals("grupo3")) {
                                 grupo.remove(nombre);
-                                enviarMensaje("Saliste del grupo");
+                                salidaGrupo = true;
                             } else if (direct2[1].equals("grupo4")) {
                                 grupo.remove(nombre);
-                                enviarMensaje("Saliste del grupo");
+                                salidaGrupo = true;
                             } else if (direct2[1].equals("grupo5")) {
                                 grupo.remove(nombre);
-                                enviarMensaje("Saliste del grupo");
+                                salidaGrupo = true;
                             } else {
                                 enviarMensaje("Grupo invalido");
                             }
                         }
+                        if (salidaGrupo) enviarMensaje("Saliste del grupo");
                     } else {
                         broadcast(nombre + ": " + mensaje);
                     }
